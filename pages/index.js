@@ -1,8 +1,15 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import fb from '../firebase/clientApp';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import Image from 'next/image'
 import MainAppbar from '../components/mainAppbar'
 
+const auth = getAuth(fb)
+
 export default function Home() {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <div>
       <Head>
@@ -11,6 +18,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainAppbar />
+      {loading && (<div>loading...</div>)}
+      {user ? user.name : "not authenticated"}
+
     </div>
   )
 }
