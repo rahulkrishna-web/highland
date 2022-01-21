@@ -22,14 +22,14 @@ export default function BuyLand() {
 
     let map = new mapboxgl.Map({
       container: "my-map",
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/mapbox/satellite-v9",
       center: [-77.02, 38.887],
-      zoom: 12.5,
-      pitch: 45,
+      zoom: 16,
       maxBounds: [
         [-77.875588, 38.50705], // Southwest coordinates
         [-76.15381, 39.548764], // Northeast coordinates
       ],
+      boxZoom: false
     });
 
     initializeMap(mapboxgl, map);

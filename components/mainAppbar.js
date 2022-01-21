@@ -24,10 +24,10 @@ export default function MainAppbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" >
+          <Typography variant="h6" component="div" sx={{ flexGrow: { xs: 1, md: 0 }}}>
             Highland
           </Typography>
-          <Box sx={{ flexGrow: 1, pl: 5 }}>
+          <Box sx={{ flexGrow: 1, pl: 5, display: { xs: 'none', md: 'flex' }}}>
           <Button color="inherit">About</Button>
           <Link href="/buyLand" passHref><Button color="inherit">Buy Land</Button></Link>
           <Button color="inherit">Support</Button>
