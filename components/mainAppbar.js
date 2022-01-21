@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -28,7 +29,7 @@ export default function MainAppbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, pl: 5 }}>
           <Button color="inherit">About</Button>
-          <Button color="inherit">Buy Land</Button>
+          <Link href="/buyLand" passHref><Button color="inherit">Buy Land</Button></Link>
           <Button color="inherit">Support</Button>
           </Box>
           <Button color="inherit">Login</Button>
