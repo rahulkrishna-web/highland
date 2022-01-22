@@ -24,9 +24,9 @@ export default function MainAppbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: { xs: 1, md: 0 }}}>
+          <Link href="/" passHref><Typography variant="h6" component="div" sx={{ flexGrow: { xs: 1, md: 0 }}}>
             Highland
-          </Typography>
+          </Typography></Link>
           <Box sx={{ flexGrow: 1, pl: 5, display: { xs: 'none', md: 'flex' }}}>
           <Link href="/about" passHref><Button color="inherit">About</Button></Link>
           <Link href="/buyLand" passHref><Button color="inherit">Buy Land</Button></Link>
