@@ -30,9 +30,9 @@ export default function MainAppbar() {
           <Box sx={{ flexGrow: 1, pl: 5, display: { xs: 'none', md: 'flex' }}}>
           <Link href="/about" passHref><Button color="inherit">About</Button></Link>
           <Link href="/buyLand" passHref><Button color="inherit">Buy Land</Button></Link>
-          <Button color="inherit">Support</Button>
+          <Link href="/support" passHref><Button color="inherit">Support</Button></Link>
           </Box>
-          <Button color="inherit">Login</Button>
+          <Link href="/login" passHref><Button color="inherit">Login</Button></Link>
         </Toolbar>
       </AppBar>
     </Box>
