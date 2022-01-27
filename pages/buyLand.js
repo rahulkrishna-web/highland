@@ -46,7 +46,6 @@ export default function BuyLand() {
       <MainAppbar />
       {loading && (<div>loading...</div>)}
       <div id="my-map" style={{ height: 500, width: "100%" }} />
-      {user ? user.name : <pre>not authenticated</pre>}
       
     </div>
   )

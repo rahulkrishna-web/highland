@@ -19,7 +19,6 @@ export default function Support() {
       </Head>
       <MainAppbar />
       {loading && (<div>loading...</div>)}
-      {user ? user.name : "not authenticated"}
 
     </div>
   )
