@@ -5,6 +5,7 @@ import fb from '../firebase/clientApp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Image from 'next/image'
 import MainAppbar from '../components/mainAppbar'
+import { Box, Typography } from '@mui/material';
 
 const auth = getAuth(fb)
 
@@ -19,7 +20,22 @@ export default function About() {
       </Head>
       <MainAppbar />
       {loading && (<div>loading...</div>)}
-      {user ? user.name : "not authenticated"}
+      <Box sx={{p:5}}>
+      <Typography variant="h3" gutterBottom component="div">
+        About
+      </Typography>
+      <Typography variant="subtitle1" gutterBottom>
+      Highland is the beginning of our world's future virtual existence and today you have a chance to own part of this incredible future.
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+      We envisage a virtual, digital world on a 1:1 scale with earth. Places in Highland are essentially in the same location as earth because the Highland digital grid system is geographically linked to the world we live in.
+
+The vision of Highland is to create a global digital representation of our earth, a place where people can build, abide, trade, live, experience, interact and so much more. The vision is long term and monumental and we feel the introduction of Highland represents the birth of the world's virtual timeline.
+
+If you share our dream and our vision then we invite you to partake and become part of history. By purchasing your own piece of virtual land in Highland you're not only supporting the virtual future of our world but also creating an amazing opportunity for yourself to make profit by becoming involved early! But if you're still unsure, simply sign up for a free account so we can keep you updated on future releases!
+      </Typography>
+      </Box>
+      
 
     </div>
   )
