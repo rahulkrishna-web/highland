@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import Link from 'next/link'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -11,6 +11,59 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 export default function MainAppbar() {
+  const [currentAccount, setCurrentAccount] = useState("");
+
+  const checkIfWalletIsConnected = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (!ethereum) {
+        console.log("Make sure you have metamask!");
+        return;
+      } else {
+        console.log("We have the ethereum object", ethereum);
+      }
+
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log("Found an authorized account:", account);
+        setCurrentAccount(account);
+      } else {
+        console.log("No authorized account found")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const connectWallet = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (!ethereum) {
+        alert("Get MetaMask!");
+        return;
+      }
+
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+
+      console.log("Connected", accounts[0]);
+      setCurrentAccount(accounts[0]); 
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const disconnectWallet = () => {
+    setCurrentAccount("");
+  }
+
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  }, [])
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -32,7 +85,9 @@ export default function MainAppbar() {
           <Link href="/buyLand" passHref><Button color="inherit">Buy Land</Button></Link>
           <Link href="/support" passHref><Button color="inherit">Support</Button></Link>
           </Box>
-          <Link href="/login" passHref><Button color="inherit">Login</Button></Link>
+          {!currentAccount && (<Button color="inherit" onClick={connectWallet}>Connect Wallet</Button>)}
+          {currentAccount && (<Button color="inherit" onClick={disconnectWallet}>Disconnect Wallet</Button>)}
+          
         </Toolbar>
       </AppBar>
     </Box>

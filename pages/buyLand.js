@@ -4,37 +4,17 @@ import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import fb from '../firebase/clientApp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Image from 'next/image'
-import  mapboxgl from "mapbox-gl/dist/mapbox-gl.js"
-import { initializeMap } from "../map/initializeMap";
 import MainAppbar from '../components/mainAppbar'
+import Map, {Popup, GeolocateControl, NavigationControl} from 'react-map-gl';
 
 const auth = getAuth(fb)
 
-mapboxgl.accessToken = "pk.eyJ1IjoicmFodWxrcmlzaG5hIiwiYSI6ImNreW83YnVobDBhdnYyb24yM2hhMGkyb2wifQ.JpccIkRnd-J96QgqrmYsxg";
+const TOKEN = "pk.eyJ1IjoicmFodWxrcmlzaG5hIiwiYSI6ImNreW83YnVobDBhdnYyb24yM2hhMGkyb2wifQ.JpccIkRnd-J96QgqrmYsxg";
 
 export default function BuyLand() {
     const [pageIsMounted, setPageIsMounted] = useState(false);
-    const [Map, setMap] = useState();
   const [user, loading, error] = useAuthState(auth);
-
-  useEffect(() => {
-    setPageIsMounted(true);
-
-    let map = new mapboxgl.Map({
-      container: "my-map",
-      style: "mapbox://styles/mapbox/satellite-v9",
-      center: [-77.02, 38.887],
-      zoom: 16,
-      maxBounds: [
-        [-77.875588, 38.50705], // Southwest coordinates
-        [-76.15381, 39.548764], // Northeast coordinates
-      ],
-      boxZoom: false
-    });
-
-    initializeMap(mapboxgl, map);
-    setMap(map);
-  }, []);
+  const [showPopup, setShowPopup] = useState(true);
 
   return (
     <div>
@@ -45,7 +25,27 @@ export default function BuyLand() {
       </Head>
       <MainAppbar />
       {loading && (<div>loading...</div>)}
-      <div id="my-map" style={{ height: 500, width: "100%" }} />
+      <Map
+    initialViewState={{
+      longitude: -100,
+      latitude: 40,
+      zoom: 14
+      
+    }}
+    style={{width: '100%', height: 400}}
+    showTileBoundaries= "true"
+    mapStyle="mapbox://styles/rahulkrishna/ckyoa46df2way14pek0hja5a6"
+    mapboxAccessToken={TOKEN}
+    >
+      {showPopup && (
+      <Popup longitude={-100} latitude={40}
+        anchor="bottom"
+        onClose={() => setShowPopup(false)}>
+        You are here
+      </Popup>)}
+      <GeolocateControl />
+      <NavigationControl />
+    </Map>
       
     </div>
   )
