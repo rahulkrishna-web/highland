@@ -82,7 +82,7 @@ export default function MainAppbar() {
           </Typography></Link>
           <Box sx={{ flexGrow: 1, pl: 5, display: { xs: 'none', md: 'flex' }}}>
           <Link href="/about" passHref><Button color="inherit">About</Button></Link>
-          <Link href="/buyLand" passHref><Button color="inherit">Buy Land</Button></Link>
+          <Link href="/landTest" passHref><Button color="inherit">Buy Land</Button></Link>
           <Link href="/support" passHref><Button color="inherit">Support</Button></Link>
           </Box>
           {!currentAccount && (<Button color="inherit" onClick={connectWallet}>Connect Wallet</Button>)}
